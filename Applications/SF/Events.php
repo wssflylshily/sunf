@@ -65,13 +65,8 @@ class Events
        $data = $message['data'];
        Worker::writeLog("收到消息 $client_id ".var_export($message, true));
 
-       switch ($message['interface'])
-       {
-           case "Login":
-               Business::Login($data, $client_id);
-               break;
-
-       }
+       $interface = $message['interface'];
+       Business::$interface($data, $client_id);
    }
    
    /**

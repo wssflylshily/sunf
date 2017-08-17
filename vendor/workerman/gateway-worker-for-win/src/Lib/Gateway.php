@@ -76,6 +76,16 @@ class Gateway
         self::sendToClient($client_id, "$data");
     }
 
+    /**
+     * 更新cmf_client_user 用户坐标
+     *
+     */
+    public static function updateCu($client_id,$xy){
+        $db = Db::instance('db');
+        $result = $db->query("UPDATE `sf_client_user` SET `xy` = '$xy' WHERE client_id='$client_id'");
+        return $result;
+    }
+
 
     /**
      * 向所有客户端连接(或者 client_id_array 指定的客户端连接)广播消息
